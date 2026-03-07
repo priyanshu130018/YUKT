@@ -1,0 +1,37 @@
+﻿Get-ChildItem -Path "src" -Filter *.jsx -Recurse | ForEach-Object {
+    $content = Get-Content $_.FullName -Raw
+    $newContent = $content -replace 'text-\[\#003366\]', 'text-black dark:text-white' 
+                           -replace 'bg-\[\#003366\]', 'bg-black dark:bg-white' 
+                           -replace 'border-\[\#003366\]', 'border-black dark:border-white' 
+                           -replace 'hover:bg-\[\#003366\]', 'hover:bg-gray-900 dark:hover:bg-gray-100' 
+                           -replace 'hover:text-\[\#003366\]', 'hover:text-black dark:hover:text-white' 
+                           -replace 'group-hover:bg-\[\#003366\]', 'group-hover:bg-black dark:group-hover:bg-white' 
+                           -replace 'group-hover:text-\[\#003366\]', 'group-hover:text-black dark:group-hover:text-white' 
+                           -replace 'bg-\[\#00509D\]', 'bg-gray-800 dark:bg-gray-200' 
+                           -replace 'hover:bg-\[\#00509D\]', 'hover:bg-gray-800 dark:hover:bg-gray-200' 
+                           -replace 'dark:text-blue-[456]00', 'dark:text-gray-300' 
+                           -replace 'text-blue-[456]00', 'text-gray-600' 
+                           -replace 'dark:bg-blue-[456]00', 'dark:bg-gray-700' 
+                           -replace 'bg-blue-[456]00', 'bg-gray-800' 
+                           -replace 'dark:hover:text-blue-[456]00', 'dark:hover:text-white' 
+                           -replace 'hover:text-blue-[456]00', 'hover:text-black' 
+                           -replace 'dark:hover:bg-blue-[456]00', 'dark:hover:bg-gray-600' 
+                           -replace 'hover:bg-blue-[456]00', 'hover:bg-gray-900' 
+                           -replace 'dark:group-hover:text-blue-[456]00', 'dark:group-hover:text-white' 
+                           -replace 'group-hover:text-blue-[456]00', 'group-hover:text-black' 
+                           -replace 'bg-blue-50/50', 'bg-gray-100/50' 
+                           -replace 'bg-blue-50', 'bg-gray-100' 
+                           -replace 'border-blue-100', 'border-gray-200' 
+                           -replace 'decoration-blue-100', 'decoration-gray-200' 
+                           -replace 'bg-blue-100/50', 'bg-gray-200/50' 
+                           -replace 'dark:bg-blue-900/20', 'dark:bg-gray-800/20' 
+                           -replace 'bg-purple-100/40', 'bg-gray-200/40' 
+                           -replace 'dark:bg-purple-900/20', 'dark:bg-gray-800/20' 
+                           -replace 'text-green-500', 'text-black dark:text-white' 
+                           -replace 'from-blue-50/50', 'from-gray-100/50' 
+                           -replace 'bg-\[\#B45309\]', 'bg-black dark:bg-white' 
+                           -replace 'text-\[\#B45309\]', 'text-black dark:text-white'
+    if ($newContent -ne $content) {
+        Set-Content -Path $_.FullName -Value $newContent -NoNewline
+    }
+}
