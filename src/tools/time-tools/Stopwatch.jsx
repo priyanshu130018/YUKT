@@ -32,21 +32,21 @@ export default function Stopwatch() {
         <div className="w-full text-center">
           <div className="bg-white dark:bg-zinc-900/40 rounded-[2.5rem] p-16 border border-gray-100 dark:border-[#ffffff10] mb-10 shadow-2xl relative overflow-hidden flex flex-col items-center justify-center transition-colors" style={{ boxShadow: '0 30px 60px rgba(0,0,0,0.08)' }}>
             <div className="absolute top-0 right-0 p-8 opacity-10">
-              <FiFlag size={120} className="text-black dark:text-white"/>
+              <FiFlag size={120} className="text-[#1a1a1a] dark:text-white"/>
             </div>
             <p className="text-gray-400 text-[10px] font-black uppercase tracking-[0.4em] mb-4">Precision Stopwatch</p>
-            <p className="text-9xl font-black tabular-nums tracking-tighter text-black dark:text-white leading-none">{f(elapsed)}</p>
+            <p className="text-9xl font-black tabular-nums tracking-tighter text-[#1a1a1a] dark:text-white leading-none">{f(elapsed)}</p>
           </div>
 
           <div className="flex items-center justify-center gap-6 mb-12">
             <button onClick={toggle} 
-              className={`flex items-center gap-3 px-12 py-5 rounded-2xl text-white font-black uppercase tracking-widest shadow-xl transition-all active:scale-95 ${running ? 'bg-red-600 hover:bg-red-700' : 'bg-[black] dark:bg-white dark:text-black hover:bg-gray-900 dark:hover:bg-gray-200'}`}>
+              className={`flex items-center gap-3 px-12 py-5 rounded-2xl text-white font-black uppercase tracking-widest shadow-xl transition-all active:scale-95 ${running ? 'bg-red-600 hover:bg-red-700' : 'bg-[#1a1a1a] dark:bg-white dark:text-[#1a1a1a] hover:bg-gray-900 dark:hover:bg-gray-200'}`}>
               {running ? <FiPause size={20}/> : <FiPlay size={20}/>} 
               <span>{running ? 'Halt' : 'Execute'}</span>
             </button>
             
             {running && (
-              <button onClick={lap} className="p-5 rounded-2xl bg-white dark:bg-white/5 border border-gray-100 dark:border-[#ffffff10] text-black dark:text-white hover:border-[black] dark:hover:border-white transition-all shadow-sm">
+              <button onClick={lap} className="p-5 rounded-2xl bg-white dark:bg-white/5 border border-gray-100 dark:border-[#ffffff10] text-[#1a1a1a] dark:text-white hover:border-[#1a1a1a] dark:hover:border-white transition-all shadow-sm">
                 <FiFlag size={24} />
               </button>
             )}
@@ -65,9 +65,9 @@ export default function Stopwatch() {
                 <span className="text-gray-400 text-[8px] font-black uppercase tracking-widest">Temporal Point</span>
               </div>
               {laps.map((l, i) => (
-                <div key={i} className="flex justify-between px-8 py-5 hover:bg-[#0a0a0a]/30 transition-colors group">
+                <div key={i} className="flex justify-between px-8 py-5 hover:bg-[#1a1a1a]/30 transition-colors group">
                   <span className="text-gray-400 text-xs font-black uppercase tracking-widest">Marking #{String(i+1).padStart(2,'0')}</span>
-                  <span className="text-black dark:text-white text-lg font-black tabular-nums group-hover:scale-105 transition-transform">{f(l)}</span>
+                  <span className="text-[#1a1a1a] dark:text-white text-lg font-black tabular-nums group-hover:scale-105 transition-transform">{f(l)}</span>
                 </div>
               ))}
             </div>

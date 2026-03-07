@@ -8,7 +8,7 @@ export function ThemeProvider({ children }) {
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', isDark);
-    document.body.style.background = isDark ? '#0a0a0a' : '#f9fafb';
+    document.body.style.background = isDark ? '#1a1a1a' : '#f9fafb';
     setItem('yukt_theme', isDark);
   }, [isDark]);
 

@@ -40,26 +40,16 @@ import CharacterCounter from '../tools/text-tools/CharacterCounter';
 import CaseConverter from '../tools/text-tools/CaseConverter';
 import RemoveSpaces from '../tools/text-tools/RemoveSpaces';
 
-// Security
-import PasswordGenerator from '../tools/security/PasswordGenerator';
-import PasswordStrength from '../tools/security/PasswordStrength';
-import Base64Encoder from '../tools/security/Base64Encoder';
-
-// Developer Tools
-import ColorPicker from '../tools/developer-tools/ColorPicker';
-import GradientGenerator from '../tools/developer-tools/GradientGenerator';
-import JsonFormatter from '../tools/developer-tools/JsonFormatter';
-import UUIDGenerator from '../tools/developer-tools/UUIDGenerator';
+// Utility Tools
+import ColorPicker from '../tools/utility-tools/ColorPicker';
+import GradientGenerator from '../tools/utility-tools/GradientGenerator';
+import JsonFormatter from '../tools/utility-tools/JsonFormatter';
 
 // Image Tools
 import ImageResizer from '../tools/image-tools/ImageResizer';
 import ImageCompressor from '../tools/image-tools/ImageCompressor';
 import ImageConverter from '../tools/image-tools/ImageConverter';
 import ImageMetadata from '../tools/image-tools/ImageMetadata';
-
-// Video Tools
-import VideoMetadata from '../tools/video-tools/VideoMetadata';
-import VideoThumbnail from '../tools/video-tools/VideoThumbnail';
 
 // PDF Tools
 import PDFMerge from '../tools/pdf-tools/PDFMerge';
@@ -68,15 +58,15 @@ import ImageToPDF from '../tools/pdf-tools/ImageToPDF';
 
 const Loader = () => (
   <div className="flex items-center justify-center min-h-screen">
-    <div className="w-12 h-12 rounded-full border-2 border-[black] border-t-transparent animate-spin"/>
+    <div className="w-12 h-12 rounded-full border-2 border-[#1a1a1a] border-t-transparent animate-spin"/>
   </div>
 );
 
 const NotFound = () => (
   <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-8">
-    <p className="text-8xl font-black text-black dark:text-white mb-4">404</p>
+    <p className="text-8xl font-black text-[#1a1a1a] dark:text-white mb-4">404</p>
     <p className="text-gray-900 text-xl font-bold mb-2 uppercase tracking-widest">Page Registry Deficiency</p>
-    <a href="/" className="text-black dark:text-white hover:underline mt-4 font-black text-sm uppercase">← Return to Home</a>
+    <a href="/" className="text-[#1a1a1a] dark:text-white hover:underline mt-4 font-black text-sm uppercase">← Return to Home</a>
   </div>
 );
 
@@ -123,26 +113,16 @@ export default function AppRoutes() {
         <Route path="/case-converter"    element={<CaseConverter />} />
         <Route path="/remove-spaces"     element={<RemoveSpaces />} />
 
-        {/* Security */}
-        <Route path="/password-generator" element={<PasswordGenerator />} />
-        <Route path="/password-strength"  element={<PasswordStrength />} />
-        <Route path="/base64"             element={<Base64Encoder />} />
-
-        {/* Developer Tools */}
+        {/* Utility Tools */}
         <Route path="/color-picker"       element={<ColorPicker />} />
         <Route path="/gradient-generator" element={<GradientGenerator />} />
         <Route path="/json-formatter"     element={<JsonFormatter />} />
-        <Route path="/uuid-generator"     element={<UUIDGenerator />} />
 
         {/* Image Tools */}
         <Route path="/image-resizer"          element={<ImageResizer />} />
         <Route path="/image-compressor"       element={<ImageCompressor />} />
         <Route path="/image-format-converter" element={<ImageConverter />} />
         <Route path="/image-metadata"         element={<ImageMetadata />} />
-
-        {/* Video Tools */}
-        <Route path="/video-metadata"  element={<VideoMetadata />} />
-        <Route path="/video-thumbnail" element={<VideoThumbnail />} />
 
         {/* PDF Tools */}
         <Route path="/pdf-merger"    element={<PDFMerge />} />

@@ -3,7 +3,11 @@ import { useTools } from '../../context/ToolContext';
 import ToolLayout from '../../components/layouts/ToolLayout';
 
 const BUTTONS = [
-  ['C','±','%','÷'],['7','8','9','×'],['4','5','6','−'],['1','2','3','+'],['0','.','='],
+  ['C', '±', '%', '÷'],
+  ['7', '8', '9', '×'],
+  ['4', '5', '6', '−'],
+  ['1', '2', '3', '+'],
+  ['0', '.', '='],
 ];
 
 export default function Calculator() {
@@ -13,70 +17,63 @@ export default function Calculator() {
   const [wait, setWait] = useState(false);
   const { addHistory } = useTools();
 
-  const calc = (a, b, o) => ({ '+':a+b,'−':a-b,'×':a*b,'÷':b!==0?a/b:'Err' }[o] ?? b);
-  
-  const press = (btn) => {
-    if (btn==='C') { setDisplay('0'); setPrev(null); setOp(null); setWait(false); return; }
-    if (btn==='±') { setDisplay(d=>String(+d*-1)); return; }
-    if (btn==='%') { setDisplay(d=>String(+d/100)); return; }
-    if (['+','−','×','÷'].includes(btn)) { setPrev(+display); setOp(btn); setWait(true); return; }
-    if (btn==='=') {
-      if (op && prev!==null) { 
-        const r = calc(prev, +display, op); 
-        const resultString = String(r);
-        
-        // Add to history
-        addHistory({
-          toolName: 'Basic Calculator',
-          description: `Performed calculation: ${prev} ${op} ${display} = ${resultString}`
-        });
+  const calc = (a, b, o) => ({ '+': a + b, '−': a - b, '×': a * b, '÷': b !== 0 ? a / b : 'Err' }[o] ?? b);
 
-        setDisplay(resultString); 
-        setPrev(null); 
-        setOp(null); 
-        setWait(false); 
+  const press = (btn) => {
+    if (btn === 'C') { setDisplay('0'); setPrev(null); setOp(null); setWait(false); return; }
+    if (btn === '±') { setDisplay(d => String(+d * -1)); return; }
+    if (btn === '%') { setDisplay(d => String(+d / 100)); return; }
+    if (['+', '−', '×', '÷'].includes(btn)) { setPrev(+display); setOp(btn); setWait(true); return; }
+    if (btn === '=') {
+      if (op && prev !== null) {
+        const r = calc(prev, +display, op);
+        addHistory({ toolName: 'Calculator', description: `${prev} ${op} ${display} = ${r}` });
+        setDisplay(String(r)); setPrev(null); setOp(null); setWait(false);
       }
       return;
     }
-    if (btn==='.') { setDisplay(d=>d.includes('.')?d:d+'.'); return; }
+    if (btn === '.') { setDisplay(d => d.includes('.') ? d : d + '.'); return; }
     setWait(false);
-    setDisplay(d=>wait||d==='0'?btn:d+btn);
+    setDisplay(d => wait || d === '0' ? btn : d + btn);
   };
 
   return (
     <ToolLayout toolId="calculator">
       <div className="flex-1 flex items-center justify-center p-8">
-        <div className="w-72">
-          <div className="bg-white rounded-2xl p-6 mb-6 border border-gray-200 text-right shadow-md dark:bg-[#0a0a0a] dark:border-[#ffffff10]">
-            {op && <div className="text-gray-400 text-sm mb-1 font-bold">{prev} {op}</div>}
-            <div className="text-black text-4xl font-black truncate dark:text-white">{display}</div>
+        <div className="w-80">
+          {/* Display */}
+          <div className="bg-gray-50 dark:bg-black/30 rounded-2xl p-5 mb-4 border border-gray-200 dark:border-white/10 transition-colors">
+            {op && <div className="text-gray-400 text-xs font-bold mb-1 text-right">{prev} {op}</div>}
+            <div className="text-[#1a1a1a] dark:text-white text-5xl font-black text-right truncate tracking-tight tabular-nums">
+              {display}
+            </div>
           </div>
-          <div className="space-y-3">
-            {BUTTONS.map((row,ri) => (
-              <div key={ri} className={`grid gap-3 ${row.length===3?'grid-cols-3':'grid-cols-4'}`}>
+
+          {/* Button grid */}
+          <div className="space-y-2.5">
+            {BUTTONS.map((row, ri) => (
+              <div key={ri} className={`grid gap-2.5 ${row.length === 3 ? 'grid-cols-3' : 'grid-cols-4'}`}>
                 {row.map(btn => {
-                  const isOperator = ['+','−','×','÷'].includes(btn);
+                  const isOp = ['+', '−', '×', '÷'].includes(btn);
                   const isClear = btn === 'C';
-                  const isEquals = btn === '=';
-                  
+                  const isEq = btn === '=';
+                  const isWide = btn === '0' && row.length === 3;
                   return (
-                    <button 
-                      key={btn} 
-                      onClick={()=>press(btn)}
+                    <button
+                      key={btn}
+                      onClick={() => press(btn)}
                       className={`
-                        py-4 rounded-xl font-bold text-lg transition-all active:scale-95 shadow-sm
-                        ${btn==='0'&&row.length===3?'col-span-2':''}
-                        ${isEquals 
-                          ? 'bg-black text-white border-black dark:bg-white dark:text-black dark:border-white' 
-                          : isOperator 
-                            ? 'bg-gray-100 text-black border-gray-200 dark:bg-white/10 dark:text-white dark:border-[#ffffff10]' 
-                            : isClear 
-                              ? 'bg-red-50 text-red-500 border-red-100 dark:bg-red-500/10 dark:text-red-400 dark:border-red-500/20' 
-                              : 'bg-white text-black border-gray-200 dark:bg-[#0a0a0a] dark:text-white dark:border-[#ffffff10]'
+                        py-5 rounded-xl font-black text-lg transition-all active:scale-90 select-none
+                        ${isWide ? 'col-span-2' : ''}
+                        ${isEq
+                          ? 'bg-[#1a1a1a] dark:bg-white text-white dark:text-[#1a1a1a] shadow-lg hover:opacity-90'
+                          : isOp
+                            ? 'bg-gray-200 dark:bg-white/15 text-[#1a1a1a] dark:text-white hover:bg-gray-300 dark:hover:bg-white/25'
+                            : isClear
+                              ? 'bg-red-50 dark:bg-red-500/15 text-red-500 dark:text-red-400 hover:bg-red-100 dark:hover:bg-red-500/25 border border-red-100 dark:border-red-500/20'
+                              : 'bg-white dark:bg-white/8 text-[#1a1a1a] dark:text-white border border-gray-100 dark:border-white/10 hover:border-gray-300 dark:hover:border-white/30 shadow-sm'
                         }
-                        border
-                      `}
-                    >
+                      `}>
                       {btn}
                     </button>
                   );

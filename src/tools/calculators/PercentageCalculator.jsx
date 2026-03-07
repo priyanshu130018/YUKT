@@ -1,35 +1,90 @@
 import { useState } from 'react';
 import ToolLayout from '../../components/layouts/ToolLayout';
 
-export default function PercentageCalculator() {
-  const [a1,setA1]=useState(''); const [b1,setB1]=useState(''); const [r1,setR1]=useState('');
-  const [a2,setA2]=useState(''); const [b2,setB2]=useState(''); const [r2,setR2]=useState('');
-  const [a3,setA3]=useState(''); const [b3,setB3]=useState(''); const [r3,setR3]=useState('');
+let r; // module-level mutable (original code pattern)
 
-  const inp=(v,s,ph)=>(
-    <input type="number" value={v} onChange={e=>s(e.target.value)} placeholder={ph}
-      className="w-24 px-3 py-2 rounded-xl glass border border-white/10 text-white text-sm text-center"/>
-  );
+const MODES = [
+  {
+    label: 'What is X% of Y?',
+    hint: 'e.g. 15% of 200 = 30',
+    fields: [
+      { ph: 'X', suffix: '%' },
+      { ph: 'Y' },
+    ],
+    calc: (a, b) => isNaN(parseFloat(a) / 100 * parseFloat(b)) ? '' : (parseFloat(a) / 100 * parseFloat(b)).toFixed(2),
+  },
+  {
+    label: 'X is what % of Y?',
+    hint: 'e.g. 30 out of 200 = 15%',
+    fields: [
+      { ph: 'X' },
+      { ph: 'Y' },
+    ],
+    calc: (a, b) => isNaN(parseFloat(a) / parseFloat(b) * 100) ? '' : (parseFloat(a) / parseFloat(b) * 100).toFixed(2) + '%',
+  },
+  {
+    label: '% Change from X to Y',
+    hint: 'e.g. 100 → 150 = +50%',
+    fields: [
+      { ph: 'From' },
+      { ph: 'To' },
+    ],
+    calc: (a, b) => isNaN((parseFloat(b) - parseFloat(a)) / parseFloat(a) * 100) ? '' : ((parseFloat(b) - parseFloat(a)) / parseFloat(a) * 100).toFixed(2) + '%',
+  },
+  {
+    label: 'X changed by Y%',
+    hint: 'e.g. 200 × 1.15 = 230',
+    fields: [
+      { ph: 'X' },
+      { ph: 'Y', suffix: '%' },
+    ],
+    calc: (a, b) => isNaN(parseFloat(a) * (1 + parseFloat(b) / 100)) ? '' : (parseFloat(a) * (1 + parseFloat(b) / 100)).toFixed(2),
+  },
+];
+
+export default function PercentageCalculator() {
+  const [vals, setVals] = useState(MODES.map(() => ['', '']));
+  const [results, setResults] = useState(MODES.map(() => ''));
+
+  const handleCalc = (i) => {
+    const [a, b] = vals[i];
+    const res = MODES[i].calc(a, b);
+    setResults(prev => prev.map((v, j) => j === i ? res : v));
+  };
 
   return (
     <ToolLayout toolId="percentage-calculator">
-      <div className="flex-1 flex items-center justify-center p-8">
-        <div className="w-full max-w-lg space-y-4">
-          <h2 className="text-white text-2xl font-bold text-center mb-6">Percentage Calculator</h2>
-          {[
-            {label:'What is X% of Y?',fields:<>{inp(a1,setA1,'X%')}<span className="text-gray-400 mx-1">% of</span>{inp(b1,setB1,'Y')}</>,
-             btn:()=>setR1(isNaN(r=parseFloat(a1)/100*parseFloat(b1))?'':r.toFixed(2)),result:r1},
-            {label:'X is what % of Y?',fields:<>{inp(a2,setA2,'X')}<span className="text-gray-400 mx-1">is what % of</span>{inp(b2,setB2,'Y')}</>,
-             btn:()=>setR2(isNaN(r=parseFloat(a2)/parseFloat(b2)*100)?'':r.toFixed(2)+'%'),result:r2},
-            {label:'X changed by Y%',fields:<>{inp(a3,setA3,'X')}<span className="text-gray-400 mx-1">by</span>{inp(b3,setB3,'Y%')}<span className="text-gray-400 mx-1">%</span></>,
-             btn:()=>setR3(isNaN(r=parseFloat(a3)*(1+parseFloat(b3)/100))?'':r.toFixed(2)),result:r3},
-          ].map(row=>(
-            <div key={row.label} className="glass rounded-2xl p-5 border border-white/5">
-              <h3 className="text-white font-semibold text-sm mb-4">{row.label}</h3>
-              <div className="flex flex-wrap items-center gap-2 mb-3">{row.fields}</div>
-              <div className="flex gap-3">
-                <button onClick={row.btn} className="px-4 py-2 rounded-xl text-white text-sm font-medium" style={{background:'#8B5CF6'}}>Calculate</button>
-                {row.result && <div className="flex items-center px-4 py-2 rounded-xl glass border border-gray-800/30 text-gray-800 font-bold text-sm">= {row.result}</div>}
+      <div className="flex-1 flex flex-col p-8 max-w-3xl mx-auto w-full">
+        <div className="grid sm:grid-cols-2 gap-4">
+          {MODES.map((mode, i) => (
+            <div key={i}
+              className="bg-white dark:bg-white/5 rounded-2xl p-6 border border-gray-100 dark:border-white/10 hover:border-[#1a1a1a]/20 dark:hover:border-white/20 transition-all">
+              <h3 className="text-[#1a1a1a] dark:text-white font-black text-xs uppercase tracking-widest mb-1">{mode.label}</h3>
+              <p className="text-gray-400 dark:text-white/30 text-[10px] font-medium mb-4">{mode.hint}</p>
+              <div className="grid grid-cols-2 gap-2 mb-3">
+                {mode.fields.map((f, j) => (
+                  <div key={j} className="relative">
+                    <input
+                      type="number"
+                      value={vals[i][j]}
+                      onChange={e => setVals(prev => prev.map((row, ri) => ri === i ? row.map((v, ci) => ci === j ? e.target.value : v) : row))}
+                      placeholder={f.ph}
+                      className={`w-full py-3 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-[#1a1a1a] dark:text-white font-bold text-sm placeholder-gray-300 dark:placeholder-white/20 outline-none focus:border-[#1a1a1a] dark:focus:border-white/40 transition-all ${f.suffix ? 'pl-3 pr-7' : 'px-3'}`}
+                    />
+                    {f.suffix && <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-white/40 text-xs font-black">{f.suffix}</span>}
+                  </div>
+                ))}
+              </div>
+              <div className="flex items-center gap-3">
+                <button onClick={() => handleCalc(i)}
+                  className="px-5 py-2 rounded-xl bg-[#1a1a1a] dark:bg-white text-white dark:text-[#1a1a1a] font-black text-xs uppercase tracking-widest hover:opacity-90 active:scale-95 transition-all">
+                  Calculate
+                </button>
+                {results[i] && (
+                  <div className="flex-1 px-4 py-2 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 text-[#1a1a1a] dark:text-white font-black text-sm text-center">
+                    = {results[i]}
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -38,4 +93,3 @@ export default function PercentageCalculator() {
     </ToolLayout>
   );
 }
-let r;

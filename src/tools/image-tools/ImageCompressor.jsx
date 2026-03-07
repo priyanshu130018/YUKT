@@ -26,14 +26,14 @@ export default function ImageCompressor() {
   return (
     <ToolLayout toolId="image-compressor">
       <div className="flex-1 flex flex-col items-center p-8 max-w-4xl mx-auto w-full">
-        <h2 className="text-black dark:text-white text-3xl font-black mb-8 uppercase tracking-tight text-center">Image Compressor</h2>
+        <h2 className="text-[#1a1a1a] dark:text-white text-3xl font-black mb-8 uppercase tracking-tight text-center">Image Compressor</h2>
         
         {!orig && (
-          <label onClick={()=>fileRef.current?.click()} className="w-full h-64 border-2 border-dashed border-gray-200 dark:border-[#ffffff10] bg-white dark:bg-zinc-900/40 rounded-2xl flex flex-col items-center justify-center cursor-pointer hover:border-[black] dark:hover:border-white hover:bg-gray-50 dark:hover:bg-white/5 transition-all group shadow-sm">
+          <label onClick={()=>fileRef.current?.click()} className="w-full h-64 border-2 border-dashed border-gray-200 dark:border-[#ffffff10] bg-white dark:bg-zinc-900/40 rounded-2xl flex flex-col items-center justify-center cursor-pointer hover:border-[#1a1a1a] dark:hover:border-white hover:bg-gray-50 dark:hover:bg-white/5 transition-all group shadow-sm">
             <div className="w-16 h-16 bg-gray-50 dark:bg-white/5 rounded-full flex items-center justify-center mb-4 group-hover:bg-gray-100 dark:group-hover:bg-white/10 transition-all">
-              <FiUpload className="text-gray-400 group-hover:text-black dark:text-white" size={32}/>
+              <FiUpload className="text-gray-400 group-hover:text-[#1a1a1a] dark:text-white" size={32}/>
             </div>
-            <p className="text-black dark:text-white font-black uppercase tracking-widest text-sm">Upload Image to Compress</p>
+            <p className="text-[#1a1a1a] dark:text-white font-black uppercase tracking-widest text-sm">Upload Image to Compress</p>
             <p className="text-gray-400 text-xs mt-2 uppercase tracking-tight">Reduces file size while maintaining quality</p>
             <input ref={fileRef} type="file" accept="image/*" onChange={onFile} className="hidden"/>
           </label>
@@ -45,14 +45,14 @@ export default function ImageCompressor() {
               <div className="flex-1 w-full">
                 <div className="flex justify-between text-[10px] font-black uppercase tracking-widest mb-3">
                   <span className="text-gray-500">Compression Level (Quality)</span>
-                  <span className="text-black dark:text-white font-black text-sm">{quality}%</span>
+                  <span className="text-[#1a1a1a] dark:text-white font-black text-sm">{quality}%</span>
                 </div>
-                <input type="range" min="10" max="100" value={quality} onChange={e=>setQuality(+e.target.value)} className="w-full accent-[black] dark:accent-white cursor-pointer"/>
+                <input type="range" min="10" max="100" value={quality} onChange={e=>setQuality(+e.target.value)} className="w-full accent-[#1a1a1a] dark:accent-white cursor-pointer"/>
               </div>
               <button 
                 onClick={compress} 
                 disabled={loading} 
-                className="w-full sm:w-auto px-10 py-4 rounded-xl text-white dark:text-black font-black uppercase tracking-widest bg-[black] dark:bg-white hover:bg-gray-900 dark:hover:bg-gray-200 transition-all shadow-lg disabled:opacity-50 active:scale-95"
+                className="w-full sm:w-auto px-10 py-4 rounded-xl text-white dark:text-[#1a1a1a] font-black uppercase tracking-widest bg-[#1a1a1a] dark:bg-white hover:bg-gray-900 dark:hover:bg-gray-200 transition-all shadow-lg disabled:opacity-50 active:scale-95"
               >
                 {loading ? 'Processing...' : 'Run Compression'}
               </button>
@@ -64,9 +64,9 @@ export default function ImageCompressor() {
               {u:orig.url, s:orig.size, l:'Original Master File', type:'source'},
               {u:compressed?.url, s:compressed?.size, l:compressed?`Compressed Result (-${ratio}%)`:'Pending...', type:'result'}
             ].map((item, idx)=>(
-              <div key={idx} className={`bg-white dark:bg-white/5 rounded-2xl p-6 border border-gray-100 dark:border-[#ffffff10] shadow-sm flex flex-col ${item.type==='result'&&compressed?'ring-2 ring-[black]/20 dark:ring-white/20 bg-gray-50/50 dark:bg-white/10':''}`}>
-                <p className="text-black dark:text-white text-[10px] font-black uppercase tracking-widest mb-4">{item.l}</p>
-                <div className="flex-1 bg-gray-50 dark:bg-black/40 rounded-xl overflow-hidden border border-gray-100 dark:border-[#ffffff05] mb-4 p-2">
+              <div key={idx} className={`bg-white dark:bg-white/5 rounded-2xl p-6 border border-gray-100 dark:border-[#ffffff10] shadow-sm flex flex-col ${item.type==='result'&&compressed?'ring-2 ring-[#1a1a1a]/20 dark:ring-white/20 bg-gray-50/50 dark:bg-white/10':''}`}>
+                <p className="text-[#1a1a1a] dark:text-white text-[10px] font-black uppercase tracking-widest mb-4">{item.l}</p>
+                <div className="flex-1 bg-gray-50 dark:bg-[#1a1a1a]/40 rounded-xl overflow-hidden border border-gray-100 dark:border-[#ffffff05] mb-4 p-2">
                   {item.u ? (
                     <img src={item.u} alt="" className="w-full h-48 object-contain rounded-lg"/>
                   ) : (
@@ -74,9 +74,9 @@ export default function ImageCompressor() {
                   )}
                 </div>
                 <div className="flex items-center justify-between">
-                  <p className="text-[black] dark:text-white font-black text-lg transition-all">{(item.s/1024||0).toFixed(1)} <span className="text-[10px] uppercase font-bold text-gray-400 dark:text-zinc-500">KB</span></p>
+                  <p className="text-[#1a1a1a] dark:text-white font-black text-lg transition-all">{(item.s/1024||0).toFixed(1)} <span className="text-[10px] uppercase font-bold text-gray-400 dark:text-zinc-500">KB</span></p>
                   {item.type==='result' && item.u && (
-                    <a href={item.u} download="optimized_image.jpg" className="px-6 py-2 rounded-lg bg-[black] dark:bg-white text-white dark:text-black text-[10px] font-black uppercase tracking-widest hover:bg-gray-900 dark:hover:bg-gray-200 transition-all shadow-md">
+                    <a href={item.u} download="optimized_image.jpg" className="px-6 py-2 rounded-lg bg-[#1a1a1a] dark:bg-white text-white dark:text-[#1a1a1a] text-[10px] font-black uppercase tracking-widest hover:bg-gray-900 dark:hover:bg-gray-200 transition-all shadow-md">
                       Download
                     </a>
                   )}

@@ -12,16 +12,13 @@ import {
 
 // Re-export missing icons with safe names
 export const CATEGORIES = [
-  { id: 'time-tools',       label: 'Time Tools',       color: '#000000',  bg: 'rgba(0,0,0,0.05)' },
-  { id: 'calculators',      label: 'Calculators',       color: '#000000',  bg: 'rgba(0,0,0,0.05)' },
-  { id: 'converters',       label: 'Converters',        color: '#000000',  bg: 'rgba(0,0,0,0.05)' },
-  { id: 'text-tools',       label: 'Text Tools',        color: '#000000',  bg: 'rgba(0,0,0,0.05)' },
-  { id: 'security',         label: 'Security',          color: '#000000',  bg: 'rgba(0,0,0,0.05)' },
-  { id: 'developer-tools',  label: 'Developer Tools',   color: '#000000',  bg: 'rgba(0,0,0,0.05)' },
-  { id: 'file-tools',       label: 'File Tools',        color: '#000000',  bg: 'rgba(0,0,0,0.05)' },
-  { id: 'image-tools',      label: 'Image Tools',       color: '#000000',  bg: 'rgba(0,0,0,0.05)' },
-  { id: 'video-tools',      label: 'Video Tools',       color: '#000000',  bg: 'rgba(0,0,0,0.05)' },
-  { id: 'pdf-tools',        label: 'PDF Tools',         color: '#000000',  bg: 'rgba(0,0,0,0.05)' },
+  { id: 'time-tools',       label: 'Time Tools',       color: '#1a1a1a',  bg: 'rgba(0,0,0,0.05)' },
+  { id: 'calculators',      label: 'Calculators',       color: '#1a1a1a',  bg: 'rgba(0,0,0,0.05)' },
+  { id: 'converters',       label: 'Converters',        color: '#1a1a1a',  bg: 'rgba(0,0,0,0.05)' },
+  { id: 'text-tools',       label: 'Text Tools',        color: '#1a1a1a',  bg: 'rgba(0,0,0,0.05)' },
+  { id: 'utility-tools',    label: 'Utility Tools',     color: '#1a1a1a',  bg: 'rgba(0,0,0,0.05)' },
+  { id: 'image-tools',      label: 'Image Tools',       color: '#1a1a1a',  bg: 'rgba(0,0,0,0.05)' },
+  { id: 'pdf-tools',        label: 'PDF Tools',         color: '#1a1a1a',  bg: 'rgba(0,0,0,0.05)' },
 ];
 
 export const TOOLS = [
@@ -51,21 +48,10 @@ export const TOOLS = [
   { id: 'case-converter',    name: 'Case Converter',    category: 'text-tools', path: '/case-converter',    icon: FiAlignLeft,  description: 'UPPER, lower, Title, camelCase, snake_case' },
   { id: 'remove-spaces',     name: 'Remove Extra Spaces', category: 'text-tools', path: '/remove-spaces',  icon: FiScissors,   description: 'Clean up extra whitespace and blank lines' },
 
-  // Security
-  { id: 'password-generator', name: 'Password Generator',       category: 'security', path: '/password-generator', icon: FiShield,  description: 'Cryptographically strong passwords' },
-  { id: 'password-strength',  name: 'Password Strength Checker', category: 'security', path: '/password-strength',  icon: FiLock,    description: 'Analyzes password security with 7 rules' },
-  { id: 'base64',             name: 'Base64 Encode / Decode',    category: 'security', path: '/base64',             icon: FiCode,    description: 'Encode/decode text to/from Base64' },
-
-  // Developer Tools
-  { id: 'color-picker',         name: 'Color Picker',          category: 'developer-tools', path: '/color-picker',         icon: FiDroplet,  description: 'HEX, RGB, HSL converter with shade palette' },
-  { id: 'gradient-generator',   name: 'Gradient Generator',    category: 'developer-tools', path: '/gradient-generator',   icon: FiZap,      description: 'CSS linear/radial gradient builder' },
-  { id: 'json-formatter',       name: 'JSON Formatter',        category: 'developer-tools', path: '/json-formatter',       icon: FiCode,     description: 'Prettify & minify JSON with validation' },
-  { id: 'html-encoder',         name: 'HTML Encoder / Decoder', category: 'developer-tools', path: '/html-encoder',        icon: FiCode,     description: 'Encode & decode HTML entities' },
-  { id: 'uuid-generator',       name: 'UUID Generator',        category: 'developer-tools', path: '/uuid-generator',       icon: FiHash,     description: 'Generate v4 UUIDs with bulk support' },
-
-  // File Tools
-  { id: 'qr-generator',   name: 'QR Code Generator', category: 'file-tools', path: '/qr-generator',   icon: FiLink,  description: 'Generate QR codes with custom colors' },
-  { id: 'barcode-generator', name: 'Barcode Generator', category: 'file-tools', path: '/barcode-generator', icon: FiHash, description: 'CODE128, EAN13, UPC barcodes' },
+  // Utility Tools
+  { id: 'color-picker',         name: 'Color Picker',          category: 'utility-tools', path: '/color-picker',         icon: FiDroplet,  description: 'HEX, RGB, HSL converter with shade palette' },
+  { id: 'gradient-generator',   name: 'Gradient Generator',    category: 'utility-tools', path: '/gradient-generator',   icon: FiZap,      description: 'CSS linear/radial gradient builder' },
+  { id: 'json-formatter',       name: 'JSON Formatter',        category: 'utility-tools', path: '/json-formatter',       icon: FiCode,     description: 'Prettify & minify JSON with validation' },
 
   // Image Tools
   { id: 'image-resizer',          name: 'Image Resizer',           category: 'image-tools', path: '/image-resizer',          icon: FiImage,      description: 'Resize images with aspect ratio lock' },
@@ -73,9 +59,6 @@ export const TOOLS = [
   { id: 'image-format-converter', name: 'Image Format Converter',  category: 'image-tools', path: '/image-format-converter', icon: FiRepeat,     description: 'Convert PNG, JPEG, WebP, BMP' },
   { id: 'image-metadata',         name: 'Image Metadata Viewer',   category: 'image-tools', path: '/image-metadata',         icon: FiInfo,       description: 'View image dimensions, size, and details' },
 
-  // Video Tools
-  { id: 'video-metadata',  name: 'Video Metadata Viewer',      category: 'video-tools', path: '/video-metadata',  icon: FiVideo, description: 'View video resolution, duration, and size' },
-  { id: 'video-thumbnail', name: 'Video Thumbnail Generator',  category: 'video-tools', path: '/video-thumbnail', icon: FiFilm,  description: 'Capture video frames as PNG thumbnails' },
 
   // PDF Tools
   { id: 'pdf-merger',    name: 'PDF Merger',       category: 'pdf-tools', path: '/pdf-merger',    icon: FiLayers,   description: 'Merge multiple PDF files into one' },
