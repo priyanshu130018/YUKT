@@ -31,12 +31,12 @@ export default function Home() {
         <motion.div
           animate={{ scale: [1, 1.05, 1], rotate: [0, 5, -5, 0] }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] md:w-[1100px] h-[600px] bg-gray-100/60 dark:bg-white/[0.03] blur-[120px] rounded-[100%] pointer-events-none"
+          className="absolute top-0 left-1/2 -translate-x-1/2 w-800px md:w-1100px h-600px bg-gray-100/60 dark:bg-white/0.03 blur-[120px] rounded-[100%] pointer-events-none"
         />
         <motion.div
           animate={{ scale: [1, 1.1, 1], rotate: [0, -10, 10, 0] }}
           transition={{ duration: 25, repeat: Infinity, ease: "linear", delay: 2 }}
-          className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-gray-200/40 dark:bg-white/[0.02] blur-[100px] rounded-[100%] pointer-events-none"
+          className="absolute bottom-0 right-0 w-300px h-300px bg-gray-200/40 dark:bg-white/0.02 blur-[100px] rounded-[100%] pointer-events-none"
         />
 
         <motion.div
@@ -54,7 +54,7 @@ export default function Home() {
 
           {/* Heading */}
           <motion.h1 variants={fadeUp}
-            className="text-4xl md:text-6xl lg:text-8xl font-black mb-8 leading-[1] tracking-tight text-[#1a1a1a] dark:text-white">
+            className="text-4xl md:text-6xl lg:text-8xl font-black mb-8 leading-1 tracking-tight text-[#1a1a1a] dark:text-white">
             Your Ultimate<br />
             <span className="relative">
               <span className="text-[#1a1a1a] dark:text-white">Kit of Tools</span>
@@ -140,7 +140,7 @@ export default function Home() {
               ].map((stat, i) => (
                 <motion.div key={i} variants={fadeUp}
                   className="group bg-white dark:bg-white/5 p-8 rounded-2xl border border-gray-100 dark:border-white/10 shadow-sm hover:shadow-xl dark:hover:shadow-white/5 hover:-translate-y-2 transition-all duration-300 relative overflow-hidden text-center">
-                  <div className="absolute inset-0 bg-gradient-to-b from-gray-50/80 to-transparent dark:from-white/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+                  <div className="absolute inset-0 bg-linear-to-b from-gray-50/80 to-transparent dark:from-white/2 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                   <div className="w-14 h-14 rounded-2xl mb-5 mx-auto flex items-center justify-center bg-gray-50 dark:bg-white/10 text-[#1a1a1a] dark:text-white group-hover:bg-[#1a1a1a] dark:group-hover:bg-white group-hover:text-white dark:group-hover:text-[#1a1a1a] transition-all duration-300 relative z-10">
                     <stat.icon size={24} />
                   </div>
@@ -153,12 +153,14 @@ export default function Home() {
             {/* Checklist */}
             <motion.div variants={staggerContainer} className="grid md:grid-cols-2 gap-3 max-w-4xl mx-auto">
               {[
-                'Zero account registry required',
-                'Internal processing (Zero data transmission)',
-                'No output watermarking protocols',
-                'Universal cross-platform compatibility',
-                'No distribution or installation mandatory',
-                'Cyclic tool repository updates'
+                'Zero account registration required',
+                'No server-side file processing',
+                'No data tracking or analytics collection',
+                'No output watermarks or branding',
+                'Works offline after first load',
+                'Free forever — no subscriptions',
+                'Open-source, auditable codebase',
+                'Universal device compatibility',
               ].map((text, i) => (
                 <motion.div key={i} variants={fadeUp}
                   className="flex items-center gap-3.5 bg-white dark:bg-white/5 p-4 rounded-xl border border-gray-100 dark:border-white/10 hover:border-green-200 dark:hover:border-green-500/20 hover:shadow-md transition-all group">
@@ -210,7 +212,7 @@ export default function Home() {
 
             <motion.div variants={staggerContainer} className="grid md:grid-cols-3 gap-8 relative">
               {/* Connector */}
-              <div className="hidden md:block absolute top-10 left-[calc(1/6*100%+2rem)] right-[calc(1/6*100%+2rem)] h-px bg-gradient-to-r from-gray-200 dark:from-white/10 via-gray-300 dark:via-white/20 to-gray-200 dark:to-white/10 z-0" />
+              <div className="hidden md:block absolute top-10 left-[calc(1/6*100%+2rem)] right-[calc(1/6*100%+2rem)] h-px bg-linear-to-r from-gray-200 dark:from-white/10 via-gray-300 dark:via-white/20 to-gray-200 dark:to-white/10 z-0" />
 
               {[
                 { step: '01', title: 'Find Tool', desc: 'Search or browse the registry to find the right tool for your task.' },
@@ -223,7 +225,7 @@ export default function Home() {
                     {h.step}
                   </div>
                   <h3 className="text-[#1a1a1a] dark:text-white font-black text-xl mb-3 uppercase tracking-tight">{h.title}</h3>
-                  <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed font-medium max-w-[200px]">{h.desc}</p>
+                  <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed font-medium max-w-50">{h.desc}</p>
                 </motion.div>
               ))}
             </motion.div>
