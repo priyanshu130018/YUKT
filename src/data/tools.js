@@ -23,7 +23,7 @@ export const CATEGORIES = [
 
 export const TOOLS = [
   // Time Tools
-  { id: 'clock',          name: 'Digital Clock',         category: 'time-tools',      path: '/clock',           icon: FiClock,       description: 'Live digital clock with world time zones' },
+  { id: 'clock',          name: 'Digital Clock',          category: 'time-tools',      path: '/clock',           icon: FiClock,       description: 'Live digital clock with world time zones' },
   { id: 'timer',          name: 'Timer',                  category: 'time-tools',      path: '/timer',           icon: FiWatch,       description: 'Countdown timer with circular progress' },
   { id: 'stopwatch',      name: 'Stopwatch',              category: 'time-tools',      path: '/stopwatch',       icon: FiPlayCircle,  description: 'Precise stopwatch with lap recording' },
   { id: 'countdown',      name: 'Countdown Timer',        category: 'time-tools',      path: '/countdown',       icon: FiAlertCircle, description: 'Countdown to any future date or event' },
@@ -43,10 +43,10 @@ export const TOOLS = [
   { id: 'timezone-converter',    name: 'Timezone Converter',     category: 'converters', path: '/timezone-converter',     icon: FiGlobe,       description: 'World clock for 9 major cities' },
 
   // Text Tools
-  { id: 'word-counter',      name: 'Word Counter',      category: 'text-tools', path: '/word-counter',      icon: FiFileText,   description: 'Words, chars, sentences, reading time' },
-  { id: 'character-counter', name: 'Character Counter', category: 'text-tools', path: '/character-counter', icon: FiType,       description: 'Char frequency analysis & breakdown' },
-  { id: 'case-converter',    name: 'Case Converter',    category: 'text-tools', path: '/case-converter',    icon: FiAlignLeft,  description: 'UPPER, lower, Title, camelCase, snake_case' },
-  { id: 'remove-spaces',     name: 'Remove Extra Spaces', category: 'text-tools', path: '/remove-spaces',  icon: FiScissors,   description: 'Clean up extra whitespace and blank lines' },
+  { id: 'word-counter',      name: 'Word Counter',        category: 'text-tools', path: '/word-counter',      icon: FiFileText,   description: 'Words, chars, sentences, reading time' },
+  { id: 'character-counter', name: 'Character Counter',   category: 'text-tools', path: '/character-counter', icon: FiType,       description: 'Char frequency analysis & breakdown' },
+  { id: 'case-converter',    name: 'Case Converter',      category: 'text-tools', path: '/case-converter',    icon: FiAlignLeft,  description: 'UPPER, lower, Title, camelCase, snake_case' },
+  { id: 'remove-spaces',     name: 'Remove Extra Spaces', category: 'text-tools', path: '/remove-spaces',     icon: FiScissors,   description: 'Clean up extra whitespace and blank lines' },
 
   // Utility Tools
   { id: 'color-picker',         name: 'Color Picker',          category: 'utility-tools', path: '/color-picker',         icon: FiDroplet,  description: 'HEX, RGB, HSL converter with shade palette' },
