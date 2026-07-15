@@ -53,17 +53,16 @@ export default function Home() {
           </motion.div>
 
           {/* Heading */}
-          <motion.h1 variants={fadeUp}
-            className="text-4xl md:text-6xl lg:text-8xl font-black mb-8 leading-1 tracking-tight text-[#1a1a1a] dark:text-white">
-            Your Ultimate<br />
+          <motion.h1
+            variants={fadeUp}
+            className="text-4xl md:text-6xl lg:text-8xl font-black mb-8 leading-tight tracking-tight text-[#1a1a1a] dark:text-white"
+          >
+            Your Ultimate
+            <br />
             <span className="relative">
-              <span className="text-[#1a1a1a] dark:text-white">Kit of Tools</span>
-              <motion.span
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 1, duration: 0.6, ease: "easeOut" }}
-                className="absolute bottom-0 left-0 right-0 h-1.5 bg-[#1a1a1a] dark:bg-white rounded-full origin-left"
-              />
+              <span className="text-[#1a1a1a] dark:text-white">
+                Kit of Tools
+              </span>
             </span>
           </motion.h1>
 
@@ -225,7 +224,7 @@ export default function Home() {
                     {h.step}
                   </div>
                   <h3 className="text-[#1a1a1a] dark:text-white font-black text-xl mb-3 uppercase tracking-tight">{h.title}</h3>
-                  <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed font-medium max-w-50">{h.desc}</p>
+                  <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed font-medium max-w-200px">{h.desc}</p>
                 </motion.div>
               ))}
             </motion.div>
