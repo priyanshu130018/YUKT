@@ -26,7 +26,12 @@ export default function Footer() {
               Professional-grade administrative and utility tools. All processing happens locally in your browser to ensure maximum privacy and speed.
             </p>
             <div className="flex gap-4">
-              <a href="https://github.com/priyanshu130018/YUKT.git" className="w-10 h-10 rounded-full border border-gray-100 dark:border-[#ffffff10] flex items-center justify-center text-gray-400 hover:text-[#1a1a1a] dark:text-white hover:border-[#1a1a1a] dark:hover:border-white transition-all">
+              <a
+                href="https://github.com/priyanshu130018/YUKT"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full border border-gray-100 dark:border-[#ffffff10] flex items-center justify-center text-gray-400 hover:text-[#1a1a1a] dark:text-white hover:border-[#1a1a1a] dark:hover:border-white transition-all"
+              >
                 <FiGithub size={18} />
               </a>
               <a href="#" className="w-10 h-10 rounded-full border border-gray-100 dark:border-[#ffffff10] flex items-center justify-center text-gray-400 hover:text-[#1a1a1a] dark:text-white hover:border-[#1a1a1a] dark:hover:border-white transition-all">
