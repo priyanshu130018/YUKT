@@ -1,6 +1,6 @@
 import MainLayout from '../../components/layouts/MainLayout';
 import { motion } from 'framer-motion';
-import { FiShield, FiCpu, FiGlobe, FiLock, FiZap, FiUsers, FiCheckCircle, FiCode } from 'react-icons/fi';
+import { FiShield, FiCpu, FiGlobe, FiZap, FiUsers, FiCheckCircle } from 'react-icons/fi';
 
 const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } } };
 const stagger = { hidden: { opacity: 1 }, visible: { opacity: 1, transition: { staggerChildren: 0.1 } } };
@@ -22,28 +22,33 @@ const features = [
 export default function About() {
   return (
     <MainLayout>
-      {/* Hero */}
-      <section className="relative py-20 px-6 border-b border-gray-100 dark:border-white/5 overflow-hidden">
-        <div className="absolute inset-0 bg-white dark:bg-[#1a1a1a]" />
-        <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-4xl mx-auto text-center relative z-10">
-          <motion.div variants={fadeUp} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 dark:bg-white/10 border border-gray-200 dark:border-white/10 text-xs font-bold text-gray-600 dark:text-white uppercase tracking-widest mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-            YUKT Platform — Technical Reference
+      {/* About */}
+      <section id="about" className="py-24 px-6 bg-white dark:bg-[#1a1a1a] border-b border-gray-100 dark:border-white/5 transition-colors">
+        <div className="max-w-4xl mx-auto">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={stagger}>
+            <motion.div variants={fadeUp} className="text-center mb-14">
+              <p className="text-[10px] font-black uppercase tracking-[0.35em] text-gray-400 dark:text-white/30 mb-3">Background</p>
+              <h2 className="text-4xl font-black text-[#1a1a1a] dark:text-white uppercase tracking-tight">About YUKT</h2>
+              <div className="w-16 h-1 bg-[#1a1a1a] dark:bg-white mx-auto mt-5 rounded-full" />
+            </motion.div>
+      
+            <motion.div variants={fadeUp} className="space-y-6 text-gray-600 dark:text-gray-300 text-[17px] leading-[1.85] text-justify">
+              <p>
+                <span className="text-[#1a1a1a] dark:text-white font-black">YUKT.me — Your Ultimate Kit of Tools.</span><br />
+                YUKT.me is a high-availability suite of browser-based utilities designed to support everyday administrative tasks and modern utility workflows. From bitmap image optimization and document processing to cryptographic key generation and data transformation, the platform provides a comprehensive toolkit built for efficiency, reliability, and privacy.
+              </p>
+              <p>
+                All tools within YUKT operate entirely within the user's browser environment by utilizing modern web technologies and client-side execution frameworks. This architecture ensures that files, credentials, and sensitive data remain strictly on the user's device. No server-side uploads, temporary storage, or data tracking mechanisms are used, preserving full user privacy and control.
+              </p>
+              <p>
+                YUKT follows a strictly free-to-use philosophy. The platform requires no user registration, authentication, or subscription plans, enabling immediate access to all available tools without barriers.
+              </p>
+              <p>
+                Designed with a modern responsive interface, YUKT delivers a seamless experience across desktops, tablets, and mobile devices. Whether you are a utility user, student, designer, or professional, YUKT provides a fast, secure, and accessible environment for completing essential tasks directly in your browser.
+              </p>
+            </motion.div>
           </motion.div>
-          <motion.h1 variants={fadeUp} className="text-5xl md:text-7xl font-black text-[#1a1a1a] dark:text-white tracking-tight mb-6 leading-tight">
-            About <span className="opacity-30">YUKT</span>
-          </motion.h1>
-          <motion.p variants={fadeUp} className="text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed font-medium">
-            <p>
-              <span className="text-[#1a1a1a] dark:text-white font-black">YUKT.me — Your Ultimate Kit of Tools.</span><br /><br />
-
-              YUKT.me is a high-availability suite of browser-based utilities designed to support everyday administrative tasks and modern utility workflows. From bitmap image optimization and document processing to cryptographic key generation and data transformation, the platform provides a comprehensive toolkit built for efficiency, reliability, and privacy.
-              All tools within YUKT operate entirely within the user's browser environment by utilizing modern web technologies and client-side execution frameworks. This architecture ensures that files, credentials, and sensitive data remain strictly on the user's device. No server-side uploads, temporary storage, or data tracking mechanisms are used, preserving full user privacy and control.
-              YUKT follows a strictly free-to-use philosophy. The platform requires no user registration, authentication, or subscription plans, enabling immediate access to all available tools without barriers.
-              Designed with a modern responsive interface, YUKT delivers a seamless experience across desktops, tablets, and mobile devices. Whether you are a utility user, student, designer, or professional, YUKT provides a fast, secure, and accessible environment for completing essential tasks directly in your browser.
-            </p>
-          </motion.p>
-        </motion.div>
+        </div>
       </section>
 
       {/* Stats */}
